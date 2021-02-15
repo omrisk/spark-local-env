@@ -1,0 +1,263 @@
+{
+  "paragraphs": [
+    {
+      "title": "Use Generic Inline Configuration instead of Interpreter Setting",
+      "text": "%md\n## Setting up the spark environment\nThis is the starting point of the wordcount example.\nWe will setup the basic configurations needed to setup our spark application and read information from our mock s3 bucket.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-15 15:12:19.812",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "title": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSetting up the spark environment\u003c/h2\u003e\n\u003cp\u003eThis is the starting point of the wordcount example.\u003cbr /\u003e\nWe will setup the basic configurations needed to setup our spark application and read information from our mock s3 bucket.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1588214762316_737450410",
+      "id": "20180531-100923_1307061430",
+      "dateCreated": "2020-04-30 10:46:02.000",
+      "dateStarted": "2021-02-15 15:12:17.416",
+      "dateFinished": "2021-02-15 15:12:17.437",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Inline Configuration for standalone spark cluster",
+      "text": "%spark.conf\n\nSPARK_HOME /opt/zeppelin/spark/\n\n# set driver memory to 8g\nspark.driver.memory 8g\n\n# set executor number to be 6\nspark.executor.instances  6\n\n# set executor memory 4g\nspark.executor.memory  4g\nspark.executor.cores 4\n\n# set execution mode\nmaster standalone\n\nspark.submit.deployMode\tclient\n\n\n# Any other spark properties can be set here. Here\u0027s avaliable spark configruation you can set. (http://spark.apache.org/docs/latest/configuration.html)\n\n# Needed for our s3 minio docker\nspark.speculation false\nspark.hadoop.mapreduce.fileoutputcommitter.algorithm.version 2\nspark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem\nspark.hadoop.fs.s3a.endpoint http://minio:9000\nspark.hadoop.fs.s3a.path.style.access true\nspark.hadoop.fs.s3a.connection.ssl.enabled false\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-18 12:18:04.583",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1588214762316_1311021507",
+      "id": "20180531-101615_648039641",
+      "dateCreated": "2020-04-30 10:46:02.000",
+      "dateStarted": "2021-02-18 12:18:04.612",
+      "dateFinished": "2021-02-18 12:18:04.656",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md \n### Sanity test!\nYou can run the paragraph on the right to try a simple spark function that reads a local parquet file and \nprints it to the output section.\nThis will launch a spark application that will read a small `parquet` file and print it\u0027s schema and contents \nto the notebook.\nYou can visit the [spark UI](localhost:8080) or the [spark driver](localhost:4040) to check it\u0027s progress.",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-18 12:18:05.958",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "tableHide": false,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {},
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eSanity test!\u003c/h3\u003e\n\u003cp\u003eYou can run the paragraph on the right to try a simple spark function that reads a local parquet file and\u003cbr /\u003e\nprints it to the output section.\u003cbr /\u003e\nThis will launch a spark application that will read a small \u003ccode\u003eparquet\u003c/code\u003e file and print it\u0026rsquo;s schema and contents\u003cbr /\u003e\nto the notebook.\u003cbr /\u003e\nYou can visit the \u003ca href\u003d\"localhost:8080\"\u003espark UI\u003c/a\u003e or the \u003ca href\u003d\"localhost:4040\"\u003espark driver\u003c/a\u003e to check it\u0026rsquo;s progress.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1613400399813_1327092738",
+      "id": "paragraph_1613400399813_1327092738",
+      "dateCreated": "2021-02-15 14:46:39.813",
+      "dateStarted": "2021-02-18 12:18:05.967",
+      "dateFinished": "2021-02-18 12:18:08.055",
+      "status": "FINISHED"
+    },
+    {
+      "title": "",
+      "text": "%spark\n\nimport spark.implicits._\n\nval df \u003d spark.read.format(\"parquet\").load(\"/zeppelin/example-files/users.parquet\")\ndf.printSchema\ndf.show\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-18 12:18:09.162",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- name: string (nullable \u003d true)\n |-- favorite_color: string (nullable \u003d true)\n |-- favorite_numbers: array (nullable \u003d true)\n |    |-- element: integer (containsNull \u003d true)\n\n+------+--------------+----------------+\n|  name|favorite_color|favorite_numbers|\n+------+--------------+----------------+\n|Alyssa|          null|  [3, 9, 15, 20]|\n|   Ben|           red|              []|\n+------+--------------+----------------+\n\nimport spark.implicits._\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [name: string, favorite_color: string ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://7fd2708fcc1c:4040/jobs/job?id\u003d0"
+            },
+            {
+              "jobUrl": "http://7fd2708fcc1c:4040/jobs/job?id\u003d1"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1588214762324_60233930",
+      "id": "20180530-222838_1995256600",
+      "dateCreated": "2020-04-30 10:46:02.000",
+      "dateStarted": "2021-02-18 12:18:09.169",
+      "dateFinished": "2021-02-18 12:18:31.332",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md \n## Reading from s3\nSince we\u0027ve setup a [minio](https://github.com/minio/minio) s3 docker, we can now read \nour airlines dataset into our spark application",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-18 12:19:19.834",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 90.4545,
+              "optionOpen": false
+            }
+          }
+        },
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eReading from s3\u003c/h2\u003e\n\u003cp\u003eSince we\u0026rsquo;ve setup a \u003ca href\u003d\"https://github.com/localstack/localstack\"\u003elocalstack\u003c/a\u003e s3 docker, we can now read\u003cbr /\u003e\nour airlines dataset into our spark application\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1613402011974_1184306943",
+      "id": "paragraph_1613402011974_1184306943",
+      "dateCreated": "2021-02-15 15:13:31.974",
+      "dateStarted": "2021-02-15 15:15:11.651",
+      "dateFinished": "2021-02-15 15:15:11.675",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\nimport spark.implicits._\n\nval airlines \u003d spark.read.format(\"csv\").load(\"s3a://word-count/flights-data/airlines.csv\")\n\nairlines.printSchema\nairlines.show\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-18 12:19:11.478",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1613403849055_1657905061",
+      "id": "paragraph_1613403849055_1657905061",
+      "dateCreated": "2021-02-15 15:44:09.056",
+      "status": "READY"
+    }
+  ],
+  "name": "Spark Word Count Example",
+  "id": "2F8KN6TKG",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-SNAPSHOT",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

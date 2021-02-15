@@ -1,15 +1,16 @@
 version: '3.8'
 services:
-  spark-notebook:
-    image: zeppelin-notebook
-    container_name: zeppelin-notebook
+  zeppelin:
+    image: zeppelin
+    container_name: zeppelin
+    env_file:
+      - docker/.env
     build:
       context: .
       dockerfile: docker/zeppelin/Dockerfile
     ports:
       - "9090:8080"
       - "4040:4040"
-    environment:
-      - NOTEBOOKS_DIR=/opt/spark-notebook/notebooks
-      - RESOURCES_DIR=/data/resources
-      - SPARK_MASTER=spark://spark-master:7077
+    volumes:
+      - "./docker/zeppelin/users.parquet:/zeppelin/example-files/users.parquet"
+      - "./docker/zeppelin/log4j.properties:/opt/zeppelin/conf/log4j.properties"
