@@ -47,9 +47,9 @@
     },
     {
       "title": "Inline Configuration for standalone spark cluster",
-      "text": "%spark.conf\n\nSPARK_HOME /opt/zeppelin/spark/\n\n# set driver memory to 8g\nspark.driver.memory 8g\n\n# set executor number to be 6\nspark.executor.instances  6\n\n# set executor memory 4g\nspark.executor.memory  4g\nspark.executor.cores 4\n\n# set execution mode\nmaster standalone\n\nspark.submit.deployMode\tclient\n\n\n# Any other spark properties can be set here. Here\u0027s avaliable spark configruation you can set. (http://spark.apache.org/docs/latest/configuration.html)\n\n# Needed for our s3 minio docker\nspark.speculation false\nspark.hadoop.mapreduce.fileoutputcommitter.algorithm.version 2\nspark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem\nspark.hadoop.fs.s3a.endpoint http://minio:9000\nspark.hadoop.fs.s3a.path.style.access true\nspark.hadoop.fs.s3a.connection.ssl.enabled false\n",
+      "text": "%spark.conf\n# This will point to the path we installed spark on the zeppelin docker image\nSPARK_HOME /opt/zeppelin/spark/\n\n# Will set the application name in the spark UI\nspark.app.name Zeppelin\n\n# set driver memory to 8g\nspark.driver.memory 8g\n\n# set executor memory 4g\nspark.executor.memory  4g\nspark.executor.cores 4\n\n# set execution mode\nmaster standalone\n\n# Will set the spark dirver to be our zeppelin docker\nspark.submit.deployMode\tclient\n\n# Needed for our writing efficiently to our s3 minio docker - read more at https://spark.apache.org/docs/3.0.1/cloud-integration.html\nspark.speculation false\nspark.hadoop.mapreduce.fileoutputcommitter.algorithm.version 2\nspark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem\n\n# Set to allow us to \"point\" to our mock s3 and use it interchangibly \nspark.hadoop.fs.s3a.endpoint http://minio:9000\nspark.hadoop.fs.s3a.path.style.access true\nspark.hadoop.fs.s3a.connection.ssl.enabled false\n\n# Any other spark properties can be set here. Here\u0027s avaliable spark configruation you can set. (http://spark.apache.org/docs/latest/configuration.html)",
       "user": "anonymous",
-      "dateUpdated": "2021-02-18 12:18:04.583",
+      "dateUpdated": "2021-02-19 07:14:38.183",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -79,8 +79,8 @@
       "jobName": "paragraph_1588214762316_1311021507",
       "id": "20180531-101615_648039641",
       "dateCreated": "2020-04-30 10:46:02.000",
-      "dateStarted": "2021-02-18 12:18:04.612",
-      "dateFinished": "2021-02-18 12:18:04.656",
+      "dateStarted": "2021-02-19 07:11:06.321",
+      "dateFinished": "2021-02-19 07:11:06.344",
       "status": "FINISHED"
     },
     {
@@ -124,7 +124,7 @@
       "title": "",
       "text": "%spark\n\nimport spark.implicits._\n\nval df \u003d spark.read.format(\"parquet\").load(\"/zeppelin/example-files/users.parquet\")\ndf.printSchema\ndf.show\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-18 12:18:09.162",
+      "dateUpdated": "2021-02-19 07:11:08.662",
       "progress": 100,
       "config": {
         "editorSetting": {
@@ -137,7 +137,8 @@
         "editorMode": "ace/mode/scala",
         "fontSize": 9.0,
         "results": {},
-        "enabled": true
+        "enabled": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -145,12 +146,7 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "root\n |-- name: string (nullable \u003d true)\n |-- favorite_color: string (nullable \u003d true)\n |-- favorite_numbers: array (nullable \u003d true)\n |    |-- element: integer (containsNull \u003d true)\n\n+------+--------------+----------------+\n|  name|favorite_color|favorite_numbers|\n+------+--------------+----------------+\n|Alyssa|          null|  [3, 9, 15, 20]|\n|   Ben|           red|              []|\n+------+--------------+----------------+\n\nimport spark.implicits._\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [name: string, favorite_color: string ... 1 more field]\n"
-          }
-        ]
+        "msg": []
       },
       "apps": [],
       "runtimeInfos": {
@@ -161,10 +157,10 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://7fd2708fcc1c:4040/jobs/job?id\u003d0"
+              "jobUrl": "http://5f2cffb14a89:4040/jobs/job?id\u003d0"
             },
             {
-              "jobUrl": "http://7fd2708fcc1c:4040/jobs/job?id\u003d1"
+              "jobUrl": "http://5f2cffb14a89:4040/jobs/job?id\u003d1"
             }
           ],
           "interpreterSettingId": "spark"
@@ -174,14 +170,14 @@
       "jobName": "paragraph_1588214762324_60233930",
       "id": "20180530-222838_1995256600",
       "dateCreated": "2020-04-30 10:46:02.000",
-      "dateStarted": "2021-02-18 12:18:09.169",
-      "dateFinished": "2021-02-18 12:18:31.332",
+      "dateStarted": "2021-02-19 07:11:08.666",
+      "dateFinished": "2021-02-19 07:11:34.178",
       "status": "FINISHED"
     },
     {
       "text": "%md \n## Reading from s3\nSince we\u0027ve setup a [minio](https://github.com/minio/minio) s3 docker, we can now read \nour airlines dataset into our spark application",
       "user": "anonymous",
-      "dateUpdated": "2021-02-18 13:03:18.368",
+      "dateUpdated": "2021-02-19 07:20:29.156",
       "progress": 0,
       "config": {
         "colWidth": 12.0,
@@ -218,21 +214,27 @@
       "jobName": "paragraph_1613402011974_1184306943",
       "id": "paragraph_1613402011974_1184306943",
       "dateCreated": "2021-02-15 15:13:31.974",
-      "dateStarted": "2021-02-18 13:03:14.998",
-      "dateFinished": "2021-02-18 13:03:17.331",
+      "dateStarted": "2021-02-19 07:14:51.474",
+      "dateFinished": "2021-02-19 07:14:53.428",
       "status": "FINISHED"
     },
     {
-      "text": "%spark\n\nimport spark.implicits._\n\nval airlines \u003d spark.read.format(\"csv\").load(\"s3a://word-count/flights-data/airlines.csv\")\n\nairlines.printSchema\nairlines.show\n",
+      "text": "%spark\n\nimport spark.implicits._\n\nval airlines \u003d spark.read.format(\"csv\").load(\"s3a://word-count/flights-data/airlines.csv\")\n\nairlines.printSchema\nairlines.show",
       "user": "anonymous",
-      "dateUpdated": "2021-02-18 12:19:11.478",
+      "dateUpdated": "2021-02-19 07:20:26.421",
       "progress": 0,
       "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
-        "editorSetting": {}
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -245,6 +247,42 @@
       "id": "paragraph_1613403849055_1657905061",
       "dateCreated": "2021-02-15 15:44:09.056",
       "status": "READY"
+    },
+    {
+      "text": "%md\n## The word count exersize \nNow that you have a dataset loaded from \"s3\" you can experiment localy and attempt to solve the notorious \"word-count\" challenge and count how many different airlines run in each country.\n\nTry adding another `%spark` paragraph by clicking beneath this one and start experimenting!\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-19 07:20:32.507",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eThe word count exersize\u003c/h2\u003e\n\u003cp\u003eNow that you have a dataset loaded from \u0026ldquo;s3\u0026rdquo; you can experiment localy and attempt to solve the notorious \u0026ldquo;word-count\u0026rdquo; challenge and count how many different airlines run in each country.\u003c/p\u003e\n\u003cp\u003eTry adding another \u003ccode\u003e%spark\u003c/code\u003e paragraph by clicking beneath this one and start experimenting!\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1613718993550_1857939506",
+      "id": "paragraph_1613718993550_1857939506",
+      "dateCreated": "2021-02-19 07:16:33.550",
+      "dateStarted": "2021-02-19 07:20:31.219",
+      "dateFinished": "2021-02-19 07:20:31.248",
+      "status": "FINISHED"
     }
   ],
   "name": "Spark Word Count Example",
