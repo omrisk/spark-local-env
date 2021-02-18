@@ -1,4 +1,4 @@
-FROM zeppelin-spark-base:3.0.1-hadoop3.2
+FROM spark-base:3.0.1-hadoop3.2
 
 COPY docker/worker/worker.sh /
 

@@ -1,6 +1,7 @@
 # zeppelin-wordcount
 A local environment for running a zeppelin notebook with a spark3 engine.
-This is a "sandbox" repository for learning about setting up basic spark sandboxes while using a [zeppelin notebook](https://github.com/apache/zeppelin) to perform some simple data exploration and manipulation. 
+
+This is a "sandbox" repository for learning about setting up basic spark sandboxes using [zeppelin](https://github.com/apache/zeppelin) and [spark](https://spark.apache.org/) to perform some simple data exploration and manipulation. 
 
 ## Prerequisites
 * [docker engine version 20.10.2](https://www.docker.com/products/docker-desktop)
@@ -12,20 +13,23 @@ This is a "sandbox" repository for learning about setting up basic spark sandbox
   * It will start a simple standalone spark cluster with a single worker
   * A localstack s3 service will  also be launched, you can read more about this super useful project [here](https://github.com/localstack/localstack)
 * This may take a few minutes the first time you run
-* If you're feeling adventurous, you can start multiple workers by running: `docker-compose up --scale zeppelin-spark-worker=2`
+* If you're feeling adventurous, you can start multiple workers by running: 
+
+`docker-compose up --scale zeppelin-spark-worker=2`
 
 **What's happening?**
 * Once done, you can open [localhost:8080](http://localhost:8080/) to view the spark master UI.
 * You should see the following UI and a single worker node connected to it:
 ![SparkUI](imgs/spark-ui-initial.png "Spark UI")
-* We've also started a localstack instance running a local s3 service
-  * This local s3 has a single bucket `word-count` with a single csv file `airlines.csv` that contains information regarding airlines and airports across the world.
+* We've also started a localstack instance running a local minio service which we'll use a s3 mock
+  * This local "s3" has a single bucket `word-count` with a few csv files that contain information regarding airlines and airports across the world.
   * You can read more about this open source project at [https://github.com/jpatokal/openflights](https://github.com/jpatokal/openflights)
-  * You can connect to it by running `docker exec -it zeppelin-localstack /bin/bash`
-  * And see that we've already pushed a sample data set there by running: `awslocal s3 ls word-count/airlines.csv`
-  * Download and "peek" at the data by running: 
-    * `awslocal s3 cp s3://word-count/airlines.csv .`
-    * `cat airlines.csv`
+  * You can browse this by opening [localhost:9000](localhost:9000)
+    * User: `abc`
+    * Password: `xyzxyzxyz`
+  * See that we've already pushed a sample data set there
+![minioUI](imgs/minio.png "Spark UI")  
+  * Download and "peek" at the data:
     You should see an output similar to:
 ```
 21251,"Lynx Aviation (L3/SSX)","","","SSX","Shasta","United States","N"
@@ -34,4 +38,13 @@ This is a "sandbox" repository for learning about setting up basic spark sandbox
 21317,"Svyaz Rossiya","Russian Commuter ","7R","SJM","RussianConnecty","Russia","Y"
 ```
 
+## Start your local Zeppelin notebook
+Now that we have our [standalone spark cluster](http://spark.apache.org/docs/latest/spark-standalone.html) up and running,
+we can launch our zeppelin notebook and get to work.
+* Run `docker-compose -f docker-compose-zeppelin.yml up` to start a local zeppelin notebook.
+* You can access the notebook UI at [localhost:9090](localhost:9090)
+
+## What's next?
+* Once in the zeppelin ui, choose any of the tutorials and start experimenting.
+* The custom tutorial notebook written for this repository are the ones under the `workcount-notebooks`
 

@@ -1,15 +1,19 @@
 version: '3.8'
 services:
-  zeppelin-spark-base:
+  spark-base:
     image: spark-base:3.0.1-hadoop3.2
-    container_name: zeppelin-spark-base
+    container_name: spark-base
+    env_file:
+      - docker/.env
     build:
       context: .
       dockerfile: docker/base/Dockerfile
 
-  zeppelin-spark-master:
+  spark-master:
     image: spark-master:3.0.1-hadoop3.2
-    container_name: zeppelin-spark-master
+    container_name: spark-master
+    env_file:
+      - docker/.env
     build:
       context: .
       dockerfile: docker/master/Dockerfile
@@ -17,35 +21,38 @@ services:
       - "8080:8080"
       - "7077:7077"
 
-  zeppelin-spark-worker:
+  spark-worker:
     image: spark-worker:3.0.1-hadoop3.2
+    env_file:
+      - docker/.env
     build:
       context: .
       dockerfile: docker/worker/Dockerfile
     depends_on:
-      - zeppelin-spark-master
-    environment:
-      - "SPARK_MASTER=spark://zeppelin-spark-master:7077"
+      - spark-master
     volumes:
       - "./docker/zeppelin/users.parquet:/zeppelin/example-files/users.parquet"
-
-  zeppelin-localstack:
-    container_name: zeppelin-localstack
-    image: localstack/localstack
-    healthcheck:
-      test: ["CMD", "/s3-init-health-check.sh"]
-      interval: 30s
-      timeout: 3s
-      start_period: 5s
-      retries: 5
+      # To allow tweaking log levels easily"
+      - "./docker/zeppelin/log4j.properties:/spark/conf/log4j.properties"
+  minio:
+    image: minio/minio
+    env_file:
+      - docker/.env
     ports:
-      - "4566:4566"
-      - "4571:4571"
-    environment:
-      - SERVICES=s3
-      - DATA_DIR=/tmp/localstack/data
+      - "9000:9000"
+    command: server /data
+
+  minio-setup:
+    image: minio/mc
+    build:
+      context: .
+      dockerfile: docker/minio/Dockerfile
+    depends_on:
+      - minio
+    container_name: minio-setup
+    env_file:
+      - docker/.env
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./docker/aws/docker-init:/docker-entrypoint-initaws.d"
-      - "./docker/aws/s3-init-health-check.sh:/s3-init-health-check.sh"
+      # In case you have your own data to mount
+      - ./docker/minio/setup.sh:/setup.sh
+    entrypoint: /setup.sh
