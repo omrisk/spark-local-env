@@ -11,7 +11,7 @@ This is a "sandbox" repository for learning about setting up basic spark sandbox
 * Start your local spark cluster by running: `docker-compose up`
   * This will build local spark docker images for spark master and worker
   * It will start a simple standalone spark cluster with a single worker
-  * A localstack s3 service will  also be launched, you can read more about this super useful project [here](https://github.com/localstack/localstack)
+  * A minio s3 service will also be launched, you can read more about this super useful project [here](https://github.com/localstack/localstack)
 * This may take a few minutes the first time you run
 * If you're feeling adventurous, you can start multiple workers by running: 
 
@@ -21,7 +21,7 @@ This is a "sandbox" repository for learning about setting up basic spark sandbox
 * Once done, you can open [localhost:8080](http://localhost:8080/) to view the spark master UI.
 * You should see the following UI and a single worker node connected to it:
 ![SparkUI](imgs/spark-ui-initial.png "Spark UI")
-* We've also started a localstack instance running a local minio service which we'll use a s3 mock
+* We've also started a minio instance running a local minio service which we'll use a s3 mock
   * This local "s3" has a single bucket `word-count` with a few csv files that contain information regarding airlines and airports across the world.
   * You can read more about this open source project at [https://github.com/jpatokal/openflights](https://github.com/jpatokal/openflights)
   * You can browse this by opening [localhost:9000](localhost:9000)
