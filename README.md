@@ -1,4 +1,4 @@
-# zeppelin-wordcount
+# spark-local-env
 A local environment for running a zeppelin notebook with a spark3 engine.
 
 This is a "sandbox" repository for learning about setting up basic spark sandboxes using [zeppelin](https://github.com/apache/zeppelin) and [spark](https://spark.apache.org/) to perform some simple data exploration and manipulation. 
