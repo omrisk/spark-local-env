@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   spark-base:
     image: spark-base:3.0.1-hadoop3.2
