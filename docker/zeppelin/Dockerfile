@@ -11,17 +11,10 @@ RUN apt-get update &&  apt-get install -y curl unzip wget grep sed vim tzdata &&
     && wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
     && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
     && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
-    && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-#    && wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk/$AWS_SDK_VERSION/aws-java-sdk-$AWS_SDK_VERSION.jar \
-#    && mv aws-java-sdk-$AWS_SDK_VERSION.jar spark/jars \
-#    && wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-s3/$AWS_SDK_VERSION/aws-java-sdk-s3-$AWS_SDK_VERSION.jar \
-#    && mv aws-java-sdk-s3-$AWS_SDK_VERSION.jar spark/jars \
-#    && wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-core/$AWS_SDK_VERSION/aws-java-sdk-core-$AWS_SDK_VERSION.jar \
-#    && mv aws-java-sdk-core-$AWS_SDK_VERSION.jar spark/jars \
-
-RUN   wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/$HADOOP_AWS_VERSION/hadoop-aws-$HADOOP_AWS_VERSION.jar \
-      && mv hadoop-aws-$HADOOP_AWS_VERSION.jar spark/jars
-RUN wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.655/aws-java-sdk-bundle-1.11.655.jar \
+    && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
+    && wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/$HADOOP_AWS_VERSION/hadoop-aws-$HADOOP_AWS_VERSION.jar \
+    && mv hadoop-aws-$HADOOP_AWS_VERSION.jar spark/jars \
+    && wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.655/aws-java-sdk-bundle-1.11.655.jar \
     && mv aws-java-sdk-bundle-1.11.655.jar spark/jars \
     && wget https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar \
     && mv guava-27.0-jre.jar spark/jars \
