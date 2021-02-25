@@ -33,7 +33,7 @@ services:
     volumes:
       - "./docker/zeppelin/users.parquet:/zeppelin/example-files/users.parquet"
       # To allow tweaking log levels easily"
-      - "./docker/zeppelin/log4j.properties:/spark/conf/log4j.properties"
+      - "./docker/base/log4j.properties:/spark/conf/log4j.properties"
   minio:
     image: minio/minio
     env_file:
