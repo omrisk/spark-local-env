@@ -13,4 +13,4 @@ services:
       - "4040:4040"
     volumes:
       - "./docker/zeppelin/users.parquet:/zeppelin/example-files/users.parquet"
-      - "./docker/zeppelin/log4j.properties:/opt/zeppelin/conf/log4j.properties"
+      - "./docker/base/log4j.properties:/opt/zeppelin/conf/log4j.properties"
