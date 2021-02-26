@@ -3,8 +3,6 @@
 set -x
 
 echo "Creating s3 creds 'word-count' bucket on minio ${S3_ENDPOINT}"
-echos mc alias set s3 "${S3_ENDPOINT}" "${MINIO_ACCESS_KEY}" "${MINIO_SECRET_KEY}" --api S3v4
-
 mc alias set s3 "${S3_ENDPOINT}" "${MINIO_ACCESS_KEY}" "${MINIO_SECRET_KEY}" --api S3v4
 
 echo "Creating s3 'word-count' bucket on minio"
