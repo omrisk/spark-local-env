@@ -22,3 +22,6 @@ RUN apk add --no-cache curl bash openjdk11-jre nss libc6-compat \
         && mv guava-27.0-jre.jar spark/jars \
         && rm spark/jars/guava-14.0.1.jar \
         && cd /
+
+# Make the README.md local on all spark containers
+COPY README.md /README.md

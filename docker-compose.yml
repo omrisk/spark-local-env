@@ -8,6 +8,10 @@ services:
     build:
       context: .
       dockerfile: docker/base/Dockerfile
+    ports:
+      - "3030:4040"
+    volumes:
+    - "./README.md:/README.md"
 
   spark-master:
     image: spark-master:3.0.1-hadoop3.2
