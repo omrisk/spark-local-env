@@ -24,6 +24,8 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
+    volumes:
+      - "./README.md:/README.md"
 
   spark-worker:
     image: spark-worker:3.0.1-hadoop3.2
@@ -38,6 +40,7 @@ services:
       - "./docker/zeppelin/users.parquet:/zeppelin/example-files/users.parquet"
       # To allow tweaking log levels easily"
       - "./docker/base/log4j.properties:/spark/conf/log4j.properties"
+      - "./README.md:/README.md"
   minio:
     image: minio/minio
     env_file:
