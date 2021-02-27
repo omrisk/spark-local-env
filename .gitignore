@@ -2,3 +2,4 @@
 *.iml
 .idea
 .DS_store
+docker/base/log4j.properties
