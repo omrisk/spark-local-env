@@ -43,6 +43,10 @@ Now that we have our [standalone spark cluster](http://spark.apache.org/docs/lat
 we can launch our zeppelin notebook and get to work.
 * Run `docker-compose -f docker-compose-zeppelin.yml up` to start a local zeppelin notebook.
 * You can access the notebook UI at [localhost:9090](localhost:9090)
+![zeppelin](imgs/zeppelin-splash.png "Zeppelin notebook")  
+
+You can start experimenting with notebooks by opening the `wordcount-notebooks` notebooks:
+![zeppelin-notebook](imgs/zeppelin-notebook.png "Zeppelin notebook example")
 
 ## What's next?
 * Once in the zeppelin ui, choose any of the tutorials and start experimenting.
