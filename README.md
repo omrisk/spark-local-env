@@ -28,7 +28,7 @@ This is a "sandbox" repository for learning about setting up basic spark sandbox
     * User: `abc`
     * Password: `xyzxyzxyz`
   * See that we've already pushed a sample data set there
-![minioUI](imgs/minio.png "Spark UI")  
+![minioUI](imgs/Minio.png "Spark UI")  
   * Download and "peek" at the data:
     You should see an output similar to:
 ```
