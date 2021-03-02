@@ -22,7 +22,7 @@ RUN apt-get update &&  apt-get install -y curl unzip wget grep sed vim tzdata &&
     && cd /
 
 
-COPY docker/zeppelin/wordcount-notebooks /opt/zeppelin/notebook/wordcount-notebooks
-RUN chmod -R 777 /opt/zeppelin/notebook/wordcount-notebooks/
+COPY docker/zeppelin/airline-notebooks /opt/zeppelin/notebook/airline-notebooks
+RUN chmod -R 777 /opt/zeppelin/notebook/airline-notebooks/
 
 USER 1000
