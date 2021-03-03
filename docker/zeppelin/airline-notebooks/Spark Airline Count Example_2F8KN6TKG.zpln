@@ -4,7 +4,7 @@
       "title": "Use Generic Inline Configuration instead of Interpreter Setting",
       "text": "%md\n## Setting up the spark environment\nThis is the starting point of the wordcount example.\nWe will setup the basic configurations needed to setup our spark application and read information from our mock s3 bucket.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-02-24 06:08:46.556",
+      "dateUpdated": "2021-03-03 07:50:17.815",
       "progress": 0,
       "config": {
         "tableHide": false,
@@ -92,7 +92,7 @@
       "title": "Inline Configuration for standalone spark cluster",
       "text": "%spark.conf\n# This will point to the path we installed spark on the zeppelin docker image\nSPARK_HOME /opt/zeppelin/spark/\n\n# Will set the application name in the spark UI\nspark.app.name Zeppelin\n\n# set driver memory to 8g\nspark.driver.memory 8g\n\n# set executor memory 4g\nspark.executor.memory  4g\nspark.executor.cores 4\n\n# set execution mode\nmaster standalone\n\n# Will set the spark driver to be our zeppelin docker\nspark.submit.deployMode\tclient\n\n# Needed for our writing efficiently to our s3 minio docker - read more at https://spark.apache.org/docs/3.0.1/cloud-integration.html\nspark.speculation false\nspark.hadoop.mapreduce.fileoutputcommitter.algorithm.version 2\nspark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem\n\n# Set to allow us to \"point\" to our mock s3 and use it interchangibly \nspark.hadoop.fs.s3a.endpoint http://minio:9000\nspark.hadoop.fs.s3a.path.style.access true\nspark.hadoop.fs.s3a.connection.ssl.enabled false\n\n# Any other spark properties can be set here. Here\u0027s avaliable spark configruation you can set. (http://spark.apache.org/docs/latest/configuration.html)\n\n# When you\u0027re done reading, run this paragraph to set apply the settings",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 15:28:48.746",
+      "dateUpdated": "2021-03-03 07:57:42.732",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -123,8 +123,8 @@
       "jobName": "paragraph_1588214762316_1311021507",
       "id": "20180531-101615_648039641",
       "dateCreated": "2020-04-30 10:46:02.000",
-      "dateStarted": "2021-03-02 15:28:48.754",
-      "dateFinished": "2021-03-02 15:28:48.765",
+      "dateStarted": "2021-03-03 07:57:42.761",
+      "dateFinished": "2021-03-03 07:57:42.871",
       "status": "FINISHED"
     },
     {
@@ -174,7 +174,7 @@
       "title": "",
       "text": "%spark\n\nimport spark.implicits._\n\nval df \u003d spark.read.format(\"parquet\").load(\"/zeppelin/example-files/users.parquet\")  \ndf.printSchema\ndf.show\n",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:52:10.909",
+      "dateUpdated": "2021-03-03 08:05:25.746",
       "progress": 100,
       "config": {
         "editorSetting": {
@@ -201,8 +201,8 @@
       "jobName": "paragraph_1588214762324_60233930",
       "id": "20180530-222838_1995256600",
       "dateCreated": "2020-04-30 10:46:02.000",
-      "dateStarted": "2021-03-02 15:51:31.386",
-      "dateFinished": "2021-03-02 15:51:32.932",
+      "dateStarted": "2021-03-03 08:05:25.782",
+      "dateFinished": "2021-03-03 08:06:10.263",
       "status": "FINISHED"
     },
     {
@@ -258,7 +258,7 @@
     {
       "text": "%spark\n\nimport spark.implicits._\n\nval airlines \u003d spark.read.format(\"csv\").load(\"s3a://word-count/flights-data/airlines.csv\")\n\nairlines.printSchema\nairlines.show",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 15:30:17.227",
+      "dateUpdated": "2021-03-03 08:14:37.602",
       "progress": 100,
       "config": {
         "editorSetting": {
@@ -285,14 +285,14 @@
       "jobName": "paragraph_1613403849055_1657905061",
       "id": "paragraph_1613403849055_1657905061",
       "dateCreated": "2021-02-15 15:44:09.056",
-      "dateStarted": "2021-03-02 15:30:17.232",
-      "dateFinished": "2021-03-02 15:30:23.221",
+      "dateStarted": "2021-03-03 08:14:37.633",
+      "dateFinished": "2021-03-03 08:14:44.866",
       "status": "FINISHED"
     },
     {
       "text": "%md\n## What\u0027s in a schema?\nIn the last paragraph we loaded our data set from MinIO and printed the schema.\nThe schema is a the description of the structure of your data, it defines how Spark treats each column of the CSV.\nSo it\u0027s what defines if we treat a column containing a `123` as a string, integer or double.\n\nReading data this way, creates a dataframe, this is a \"row\" of data that has columns according to the schema we defined.\n\nLet\u0027s define a schema in the next `%spark` paragraph and read our flight data.\n",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:19:41.120",
+      "dateUpdated": "2021-03-03 08:22:19.408",
       "progress": 0,
       "config": {
         "tableHide": false,
@@ -328,14 +328,14 @@
       "jobName": "paragraph_1614697262960_1411699733",
       "id": "paragraph_1614697262960_1411699733",
       "dateCreated": "2021-03-02 15:01:02.960",
-      "dateStarted": "2021-03-02 19:19:41.125",
-      "dateFinished": "2021-03-02 19:19:41.294",
+      "dateStarted": "2021-03-03 08:22:19.410",
+      "dateFinished": "2021-03-03 08:22:22.484",
       "status": "FINISHED"
     },
     {
       "text": "%spark\nimport spark.implicits._\nimport org.apache.spark.sql.types._\n\nval airlineSchema \u003d StructType(Array(\n    StructField(\"id\",IntegerType,true),\n    StructField(\"airlineName\",StringType,true),\n    StructField(\"alias\",StringType,true),\n    StructField(\"iataCode\", StringType, true),\n    StructField(\"icaoCode\", StringType, true),\n    StructField(\"callsign\", StringType, true),\n    StructField(\"country\", StringType, true),\n    StructField(\"active\", StringType, true)\n  ))\n  \n  val airlinesWithSchema \u003d  spark.read.format(\"csv\")\n                                .schema(airlineSchema)\n                                .load(\"s3a://word-count/flights-data/airlines.csv\")\n\nairlinesWithSchema.printSchema\nairlinesWithSchema.show",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 15:47:06.181",
+      "dateUpdated": "2021-03-03 08:22:46.633",
       "progress": 100,
       "config": {
         "editorSetting": {
@@ -360,8 +360,8 @@
       "jobName": "paragraph_1614698363348_2020104831",
       "id": "paragraph_1614698363348_2020104831",
       "dateCreated": "2021-03-02 15:19:23.349",
-      "dateStarted": "2021-03-02 15:47:06.191",
-      "dateFinished": "2021-03-02 15:47:08.133",
+      "dateStarted": "2021-03-03 08:22:46.648",
+      "dateFinished": "2021-03-03 08:22:49.047",
       "status": "FINISHED"
     },
     {
@@ -410,7 +410,7 @@
     {
       "text": "%spark\nimport spark.implicits._\n\ncase class AirlineDS(id: Integer, airlineName: String, alias: String,\n                    iataCode: String, icaoCode: String, callSign: String, country: String, active: String )\n\n\nval airlineDS \u003d spark.read.format(\"csv\")\n                                .schema(airlineSchema)\n                                .load(\"s3a://word-count/flights-data/airlines.csv\").as[AirlineDS]\n                                \nairlineDS.printSchema\nairlineDS.show\n",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:40:14.750",
+      "dateUpdated": "2021-03-03 08:42:12.424",
       "progress": 100,
       "config": {
         "editorSetting": {
@@ -435,8 +435,8 @@
       "jobName": "paragraph_1614712913459_10545824",
       "id": "paragraph_1614712913459_10545824",
       "dateCreated": "2021-03-02 19:21:53.459",
-      "dateStarted": "2021-03-02 19:40:14.788",
-      "dateFinished": "2021-03-02 19:40:17.071",
+      "dateStarted": "2021-03-03 08:42:12.473",
+      "dateFinished": "2021-03-03 08:42:15.424",
       "status": "FINISHED"
     },
     {
@@ -483,9 +483,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%md\n## Count all the things \nAn common problem we need to solve is aggregation, how many times did something appear?\n\nIn this case we may be interested to know how many airlines are based in the United States?\nHow many in Russia?\n\nSince we\u0027ve created the `airlineDS` dataset let\u0027s try to count what are the countries with the most active airlines?",
+      "text": "%md\n## Count all the things \nA common problem we usually need to solve is aggregation, how many times did something appear?\n\nIn this case we may be interested to know how many airlines are based in the United States?\nHow many in Russia?\n\nSince we\u0027ve created the `airlineDS` dataset let\u0027s try to count what are the countries with the most active airlines?",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:47:21.218",
+      "dateUpdated": "2021-03-03 09:03:05.537",
       "progress": 0,
       "config": {
         "colWidth": 12.0,
@@ -511,7 +511,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eCount all the things\u003c/h2\u003e\n\u003cp\u003eAn common problem we need to solve is aggregation, how many times did something appear?\u003c/p\u003e\n\u003cp\u003eIn this case we may be interested to know how many airlines are based in the United States?\u003cbr /\u003e\nHow many in Russia?\u003c/p\u003e\n\u003cp\u003eSince we\u0026rsquo;ve created the \u003ccode\u003eairlineDS\u003c/code\u003e dataset let\u0026rsquo;s try to count what are the countries with the most active airlines?\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eCount all the things\u003c/h2\u003e\n\u003cp\u003eA common problem we usually need to solve is aggregation, how many times did something appear?\u003c/p\u003e\n\u003cp\u003eIn this case we may be interested to know how many airlines are based in the United States?\u003cbr /\u003e\nHow many in Russia?\u003c/p\u003e\n\u003cp\u003eSince we\u0026rsquo;ve created the \u003ccode\u003eairlineDS\u003c/code\u003e dataset let\u0026rsquo;s try to count what are the countries with the most active airlines?\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -521,15 +521,15 @@
       "jobName": "paragraph_1613718993550_1857939506",
       "id": "paragraph_1613718993550_1857939506",
       "dateCreated": "2021-02-19 07:16:33.550",
-      "dateStarted": "2021-03-02 19:47:21.222",
-      "dateFinished": "2021-03-02 19:47:21.249",
+      "dateStarted": "2021-03-03 09:03:05.558",
+      "dateFinished": "2021-03-03 09:03:05.732",
       "status": "FINISHED"
     },
     {
-      "text": "%spark\nimport org.apache.spark.sql.functions._     // Let us import the `desc` function\n\nairlineDS.groupBy(col(\"country\"))                    // Create groups according to the \"Country\" column\n         .agg(count(\"country\") as \"airline-count\")   // Aggregate the size of the groups and count them\n         .orderBy(desc(\"airline-count\"))             // Order them by largest\n         .show                                       // Print the results",
+      "text": "%spark\nimport org.apache.spark.sql.functions._                       // Let us import the `desc` function\n\nval airlineCountByCountry \u003d airlineDS.groupBy(col(\"country\"))  // Create groups according to the \"Country\" column\n         .agg(count(\"country\") as \"airline-count\")            // Aggregate the size of the groups and count them\n         .orderBy(desc(\"airline-count\"))                      // Order them by largest\n\nairlineCountByCountry.show\n",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:47:15.524",
-      "progress": 91,
+      "dateUpdated": "2021-03-03 09:04:47.420",
+      "progress": 75,
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -553,14 +553,109 @@
       "jobName": "paragraph_1614697203482_573241868",
       "id": "paragraph_1614697203482_573241868",
       "dateCreated": "2021-03-02 15:00:03.486",
-      "dateStarted": "2021-03-02 19:45:04.130",
-      "dateFinished": "2021-03-02 19:45:07.335",
+      "dateStarted": "2021-03-03 09:04:40.155",
+      "dateFinished": "2021-03-03 09:04:44.014",
       "status": "FINISHED"
     },
     {
-      "text": "%md\n\n## That\u0027s it!\n\nWe\u0027ve shown how to:\n1. Load data from s3\n2. Different ways of representing it (Dataframes vs. DataSets)\n3. Did a basic aggregation and count problem\n4. Done so in a Zeppelin notebook enviroment with no local installations\n\n## Where do you go from here?\nZeppelin provides additional notebooks and interpreters to experimet with.\nI think it\u0027s a good way to get a \"taste\" of how to work with the different data engines and experiment.\nYou can try going throught the different example notebooks in Zeppelin.\n\nEnjoy!\n\n",
+      "text": "%md\n## Save it forever\nNow that we have our result, let\u0027s save it back to S3 so we can cherish the results forever.",
       "user": "anonymous",
-      "dateUpdated": "2021-03-02 19:51:24.197",
+      "dateUpdated": "2021-03-03 08:46:18.503",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSave it forever\u003c/h2\u003e\n\u003cp\u003eNow that we have our result, let\u0026rsquo;s save it back to S3 so we can cherish the results forever.\u003c/p\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614761140739_661165065",
+      "id": "paragraph_1614761140739_661165065",
+      "dateCreated": "2021-03-03 08:45:40.742",
+      "dateStarted": "2021-03-03 08:46:18.502",
+      "dateFinished": "2021-03-03 08:46:18.604",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\nairlineCountByCountry\n    .coalesce(1)                  // This ensures that we output 1 file only\n    .write                        // write the new results\n    .mode(\"overwrite\")            // Overwrite any \"old\" data\n    .parquet(\"s3a://word-count/airlines-count/airlines-by-country\") // location to save to\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-03 09:12:32.033",
+      "progress": 99,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://9cd348169402:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://9cd348169402:4040/jobs/job?id\u003d12"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614761180110_354405934",
+      "id": "paragraph_1614761180110_354405934",
+      "dateCreated": "2021-03-03 08:46:20.110",
+      "dateStarted": "2021-03-03 08:51:32.861",
+      "dateFinished": "2021-03-03 08:51:37.117",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n\n## That\u0027s it!\n\nWe\u0027ve shown how to:\n1. Load data from s3\n2. Different ways of representing it (Dataframes vs. DataSets)\n3. Did a basic aggregation and count problem\n4. Saved the results back to MinIO\n5. Done so in a Zeppelin notebook enviroment with no local installations\n\n## Where do you go from here?\nZeppelin provides additional notebooks and interpreters to experimet with.\nI think it\u0027s a good way to get a \"taste\" of how to work with the different data engines and experiment.\nYou can try going throught the different example notebooks in Zeppelin.\n\nEnjoy!\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-03 09:22:42.872",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -586,7 +681,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eThat\u0026rsquo;s it!\u003c/h2\u003e\n\u003cp\u003eWe\u0026rsquo;ve shown how to:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eLoad data from s3\u003c/li\u003e\n\u003cli\u003eDifferent ways of representing it (Dataframes vs. DataSets)\u003c/li\u003e\n\u003cli\u003eDid a basic aggregation and count problem\u003c/li\u003e\n\u003cli\u003eDone so in a Zeppelin notebook enviroment with no local installations\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2\u003eWhere do you go from here?\u003c/h2\u003e\n\u003cp\u003eZeppelin provides additional notebooks and interpreters to experimet with.\u003cbr /\u003e\nI think it\u0026rsquo;s a good way to get a \u0026ldquo;taste\u0026rdquo; of how to work with the different data engines and experiment.\u003cbr /\u003e\nYou can try going throught the different example notebooks in Zeppelin.\u003c/p\u003e\n\u003cp\u003eEnjoy!\u003c/p\u003e\n\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eThat\u0026rsquo;s it!\u003c/h2\u003e\n\u003cp\u003eWe\u0026rsquo;ve shown how to:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eLoad data from s3\u003c/li\u003e\n\u003cli\u003eDifferent ways of representing it (Dataframes vs. DataSets)\u003c/li\u003e\n\u003cli\u003eDid a basic aggregation and count problem\u003c/li\u003e\n\u003cli\u003eSaved the results back to MinIO\u003c/li\u003e\n\u003cli\u003eDone so in a Zeppelin notebook enviroment with no local installations\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2\u003eWhere do you go from here?\u003c/h2\u003e\n\u003cp\u003eZeppelin provides additional notebooks and interpreters to experimet with.\u003cbr /\u003e\nI think it\u0026rsquo;s a good way to get a \u0026ldquo;taste\u0026rdquo; of how to work with the different data engines and experiment.\u003cbr /\u003e\nYou can try going throught the different example notebooks in Zeppelin.\u003c/p\u003e\n\u003cp\u003eEnjoy!\u003c/p\u003e\n\n\u003c/div\u003e"
           }
         ]
       },
@@ -596,12 +691,12 @@
       "jobName": "paragraph_1614697220622_1719153455",
       "id": "paragraph_1614697220622_1719153455",
       "dateCreated": "2021-03-02 15:00:20.622",
-      "dateStarted": "2021-03-02 19:51:24.179",
-      "dateFinished": "2021-03-02 19:51:24.349",
+      "dateStarted": "2021-03-03 09:22:42.852",
+      "dateFinished": "2021-03-03 09:22:42.921",
       "status": "FINISHED"
     }
   ],
-  "name": "Spark airline Count Example",
+  "name": "Spark Airline Count Example",
   "id": "2F8KN6TKG",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-SNAPSHOT",
